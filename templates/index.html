@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>PixelRIP - YT to MP3/MP4 Converter</title>
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #2C2C2C;
+            color: #ffffff;
+        }
+        .pixel-border {
+            box-shadow: 0 0 0 3px #FF6B6B;
+            position: relative;
+        }
+        .pixel-border::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            background: transparent;
+            z-index: -1;
+            box-shadow: 
+                3px 3px 0 3px #4ECDC4,
+                -3px -3px 0 3px #4ECDC4,
+                3px -3px 0 3px #4ECDC4,
+                -3px 3px 0 3px #4ECDC4;
+        }
+        .pixel-button {
+            background-color: #FF6B6B;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 3px 3px 0 #4ECDC4;
+        }
+        .pixel-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 #4ECDC4;
+        }
+        .pixel-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #4ECDC4;
+        }
+        .pixel-art {
+            image-rendering: pixelated;
+        }
+
+        a:hover{
+            color:#FF6b6b;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-900">
+    <div class="w-full max-w-2xl p-8 pixel-border bg-gray-800 rounded-lg">
+        <h1 class="text-4xl mb-6 text-center text-pink-500">Pixel Rip</h1>
+        <p class="text-center mb-8 text-sm">Convert YouTube videos to MP3 or MP4!</p>
+        <p class='text-center text-sm mb-8'>Dont have a link? Use this <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">one</a></p>
+        <form id="convertForm" class="flex flex-col items-center">
+            <input type="text" name="url" placeholder="Enter YouTube URL" class="w-full mb-4 p-2 bg-gray-700 rounded text-sm">
+            <div class="flex w-full mb-4 space-x-2">
+                <select name="format" class="w-1/2 p-2 bg-gray-700 rounded text-sm">
+                    <option value="mp3">MP3</option>
+                    <option value="mp4">MP4</option>
+                </select>
+                <select name="quality" class="w-1/2 p-2 bg-gray-700 rounded text-sm">
+                    <option value="128">128kbps</option>
+                    <option value="192">192kbps</option>
+                    <option value="256">256kbps</option>
+                    <option value="320">320kbps</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full p-2 pixel-button rounded text-sm">Convert</button>
+        </form>
+        <div id="statusMessage" class="mt-4 text-center text-sm hidden"></div>
+        <div id="downloadContainer" class="mt-4 text-center hidden">
+            <a id="downloadLink" href="#" download class="inline-block p-2 pixel-button rounded text-sm">
+                Download Video
+            </a>
+        </div>
+        <div id="videoInfo" class="mt-8 text-sm"></div>
+    </div>
+    <footer class="mt-8 text-center text-xs text-gray-500">
+        <p>Made by <a href="https://github.com/divpreeet" target="_blank">Divpreet</a>, check the <a href="https://github.com/divpreeet/PixelRIP" target="_blank">source code</a></p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+
+
